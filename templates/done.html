@@ -4,9 +4,27 @@
         <link rel="stylesheet" href="./static/camera.css" type="text/css" media="all" /> 
     </head>
     <body>
+    <div id = 'conhead' style = "text-align:center">
+        <img src = '../static/logo.png', alt = "logo", width="350", height="200", margin-top="30%">
+    </div>
     <div id = 'container'>
-    <p class='text'> 방문자 확인 완료</p>
-    <form id="upload" action="/" method="POST" enctype="multipart/form-data" style='text-align:center', 'border-top-right-radius: 5px'>
+<!--        <script>-->
+<!--            if({{d1}} == "확인되지 않은 방문자") {-->
+<!--                document.write(-->
+<!--                    "<p class='text1'> 방문자 확인 완료</p>"-->
+<!--                    "<p class='text2'> 방문자 방문코드가 확인되지 않습니다.</p>-->
+<!--                );-->
+<!--            }-->
+<!--            else {-->
+<!--            "<p class='text1'> 방문자 확인 완료</p>-->
+<!--        <p class="text2">방문자 방문코드    {{d1}}</p>-->
+<!--        <p class="text2">방문시각    {{d2.hour}}:{{d2.minute}}:{{d2.second}}</p>"-->
+<!--            }-->
+<!--        </script>-->
+    <p class='text1'> 방문자 확인 완료</p>
+        <p class="text3">방문자 방문코드    {{d1}}</p>
+        <p class="text2">방문시각    {{d2.hour}}:{{d2.minute}}:{{d2.second}}</p>
+    <form id="upload" action="/" method="POST" enctype="multipart/form-data" style='text-align:center'>
         <div id='btndiv'>
             <button id="btn">Back to Home</button>
         </div>
