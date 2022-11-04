@@ -1,26 +1,44 @@
 #container {
-    border: 3px solid skyblue;
-    margin-top: 5%;
-    margin-left: 10%;
-    margin-right: 10%;
-    padding: 5% 5% 5% 5%;
+  border: 3px solid #0672de;
+  /* background-color: #0672de; */
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 5% 5% 5% 5%;
 }
-
+#logo {
+  size: 10cm;
+}
 .text {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8%;
+}
+.text1 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5%;
+}
+.text2{
     font-weight: 700;
     text-align: center;
-    margin-bottom: 8%;
+    margin-bottom: 5%;
+    color: #5D5D5D;
 }
-
+.text3{
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1%;
+    color: #5D5D5D;
+}
 #btn {
-    border: 1px solid skyblue;
-    background-color: rgba(0,0,0,0);
-    color: skyblue;
-    padding: 5px;
-    
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;   
+  border: 1px solid skyblue;
+  background-color: rgba(0, 0, 0, 0);
+  color: skyblue;
+  padding: 5px;
 
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

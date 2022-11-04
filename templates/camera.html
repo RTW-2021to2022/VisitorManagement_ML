@@ -7,14 +7,19 @@
         <link rel="stylesheet" href="../static/camera.css" type="text/css" media="all" /> 
     </head>
     <body>
+        <div id = 'conhead' style = "text-align:center" "margin-top=50%";>
+            <img src = '../static/logo.png', alt = "logo", width="350", height="200", margin-top="30%">
+        </div>
+
         <div id = 'container'>
             <p class='text'>카메라를 키면 방문자 확인을 시작합니다.</p>
-            <!-- <div class='video'>
+            <!--<div class='video'>
                 <video id="myVideo" style="border: 1px solid #ddd;"></video>
-            </div> -->
+            </div>-->
 
             <form id="upload" action="/predict" method="POST" enctype="multipart/form-data" style='text-align:center', 'border-top-right-radius: 5px'>
-                <!-- <script>
+                
+                <!--<script>
                     var myVideoStream = document.getElementById('myVideo')     // make it a global variable
                     var myStoredInterval = 0
 
@@ -32,12 +37,12 @@
                     }
 
                     getVideo();
-                </script> -->
+                </script>-->
+
                 <div id='btndiv'>
                     <button id="btn">Camera On</button>
                 </div>
             </form>
         </div>
-
     </body>
 </html>
