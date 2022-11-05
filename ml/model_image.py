@@ -41,8 +41,8 @@ def face_recognition():
     faceCascade = cv2.CascadeClassifier(r"C:\Users\Yewon\anaconda3\envs\py38\Library\etc\haarcascades\haarcascade_frontalface_default.xml")
 
     #video caputure setting
-    capture = cv2.VideoCapture(0)   # initialize, # is camera number
-    # capture = cv2.imread("./김예원_흰배경.jpg")
+    # capture = cv2.VideoCapture(0)   # initialize, # is camera number
+    capture = cv2.imread("./김예원_흰배경.jpg")
     capture.set(cv2.CAP_PROP_FRAME_WIDTH,1280) #CAP_PROP_FRAME_WIDTH == 3
     capture.set(cv2.CAP_PROP_FRAME_HEIGHT,720) #CAP_PROP_FRAME_HEIGHT == 4
     # 정상작동시 true

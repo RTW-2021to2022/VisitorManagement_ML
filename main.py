@@ -18,9 +18,9 @@ def cam_main2():
     return render_template('camera.html')
 
 
-@app.route("/index")    # 변경가능, 임시
-def index():
-    return flask.render_template('done.html')
+@app.route("/update", methods=['POST', 'GET'])    # 변경가능, 임시
+def makemodel():
+    return flask.render_template('camera.html', d0="업데이트를 완료했습니다!")
 
 # 데이터
 # 데이터 예측 처리
@@ -80,7 +80,7 @@ def make_prediction():
 
                 confidence = "  {0}%".format(round(100 - confidence))
 
-                cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
+                # cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
                 cv2.putText(img, "Confidence"+str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 255), 1)
 
                 tmp.append(id)
