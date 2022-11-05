@@ -3,17 +3,24 @@
 import flask
 from flask import Flask, request, render_template
 import cv2
+from datetime import datetime
 
 
 app = Flask(__name__)
 # 메인페이지 - url 요청시 기본 index.html로 이동 (렌더링)
-@app.route("/", methods=['POST', 'GET'])
+# @app.route("/", methods=['POST', 'GET'])
+@app.route("/", methods=['POST','GET'])
 def cam_main():
     return render_template('camera.html')
 
-@app.route("/index")    # 변경가능, 임시
-def index():
-    return flask.render_template('done.html')
+@app.route("/camera", methods=['POST','GET'])
+def cam_main2():
+    return render_template('camera.html')
+
+
+@app.route("/update", methods=['POST', 'GET'])    # 변경가능, 임시
+def makemodel():
+    return flask.render_template('camera.html', d0="업데이트를 완료했습니다!")
 
 # 데이터
 # 데이터 예측 처리
@@ -42,13 +49,13 @@ def make_prediction():
         minW = 0.1 * cam.get(cv2.CAP_PROP_FRAME_WIDTH)
         minH = 0.1 * cam.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
-        start = 100
-        while start:
+
+        while True:
 
             # DB내에서 넘어온 사용자 리스트에 있는지 확인할때까지만 loop 돌리도록 코드 수정 필요
             # 이후 조건문
 
-            start -= 1
+            # start -= 1
             ret, img = cam.read()
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -59,20 +66,22 @@ def make_prediction():
                 minSize=(int(minW), int(minH))
             )
 
+            now = datetime.now()
             for (x, y, w, h) in faces:
-                cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 153, 103), 2)  #bgr
                 id, confidence = recognizer.predict(gray[y:y + h, x:x + w])
 
-                if confidence < 55:
+                if confidence < 60:
                     put_name = id
                     # name을 거치지 않고 id를 출력하게 함. 이후 출력된 id는 db로 보내야함
                 else:
                     put_name = "확인되지 않은 방문자"
 
+
                 confidence = "  {0}%".format(round(100 - confidence))
 
-                cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
-                cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
+                # cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
+                cv2.putText(img, "Confidence"+str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 255), 1)
 
                 tmp.append(id)
 
@@ -88,9 +97,34 @@ def make_prediction():
         cv2.destroyAllWindows()
         print(visit_list)
 
-    return flask.render_template('done.html')
+    return flask.render_template('done.html', d1=put_name, d2=now)
+    # return'''<!DOCTYPE HTML><html>
+    # <head>
+    # <meta charset="UTF-8">
+    #     <link rel="stylesheet" href="./static/camera.css" type="text/css" media="all" />
+    # </head>
+    # <body>
+    # <div id = 'conhead' style = "text-align:center" "margin-top=50%";>
+    #         <img src = '../static/logo.png', alt = "logo", width="350", height="200", margin-top="30%">
+    #     </div>
+    # <div id = 'container'>
+    # <p class='text'> 방문자 확인 완료</p>
+    # <javascript>
+    #
+    # </javascript>
+    # <p>20180님이 방문하셨습니다</p>
+    # <form id="upload" action="/" method="POST" enctype="multipart/form-data" style='text-align:center', 'border-top-right-radius: 5px'>
+    #     <div id='btndiv'>
+    #         <button id="btn">Back to Home</button>
+    #     </div>
+    # </form>
+    # </div></body>
+    # </html>
+    # '''
+
 
 
 if __name__ == '__main__':
     # Flask 서비스 스타트
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+

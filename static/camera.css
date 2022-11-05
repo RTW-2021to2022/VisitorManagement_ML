@@ -4,7 +4,8 @@
   margin-top: 3%;
   margin-left: 10%;
   margin-right: 10%;
-  padding: 5% 5% 5% 5%;
+  padding: 5% 4% 5% 5%;
+  /* 상우하좌 */
 }
 #logo {
   size: 10cm;
@@ -19,26 +20,60 @@
   text-align: center;
   margin-bottom: 5%;
 }
-.text2{
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 5%;
-    color: #5D5D5D;
+.text2 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 5%;
+  color: #5d5d5d;
 }
-.text3{
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1%;
-    color: #5D5D5D;
+.text3 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1%;
+  color: #5d5d5d;
 }
-#btn {
-  border: 1px solid skyblue;
-  background-color: rgba(0, 0, 0, 0);
-  color: skyblue;
+.btn {
+  border: 1px solid #0672de;
+  background-color: #0672de;
+  color: #ffffff;
   padding: 5px;
-
+  width: 120px;
+  height: 35px;
+  margin-left: -1px;
+  margin-right: -1px;
+  /* 
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px; */
+}
+
+.btndiv {
+  padding: 1% 0% 1% 0%;
+  display: inline-block;
+}
+
+#upload {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+#update {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+#buttons {
+  width: 100%;
+  text-align: center;
+}
+
+#update_done {
+  margin-top: 2%;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: #747474;
 }
