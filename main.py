@@ -98,30 +98,6 @@ def make_prediction():
         print(visit_list)
 
     return flask.render_template('done.html', d1=put_name, d2=now)
-    # return'''<!DOCTYPE HTML><html>
-    # <head>
-    # <meta charset="UTF-8">
-    #     <link rel="stylesheet" href="./static/camera.css" type="text/css" media="all" />
-    # </head>
-    # <body>
-    # <div id = 'conhead' style = "text-align:center" "margin-top=50%";>
-    #         <img src = '../static/logo.png', alt = "logo", width="350", height="200", margin-top="30%">
-    #     </div>
-    # <div id = 'container'>
-    # <p class='text'> 방문자 확인 완료</p>
-    # <javascript>
-    #
-    # </javascript>
-    # <p>20180님이 방문하셨습니다</p>
-    # <form id="upload" action="/" method="POST" enctype="multipart/form-data" style='text-align:center', 'border-top-right-radius: 5px'>
-    #     <div id='btndiv'>
-    #         <button id="btn">Back to Home</button>
-    #     </div>
-    # </form>
-    # </div></body>
-    # </html>
-    # '''
-
 
 
 if __name__ == '__main__':
