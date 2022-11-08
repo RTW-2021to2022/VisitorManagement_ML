@@ -32,11 +32,8 @@ tmp = []
 def make_prediction():
     if request.method == 'POST':
 
-        # 업로드 파일 처리 분기  # 카메라로 이 부분을 받아오면 될거 같음
-
         recognizer = cv2.face.LBPHFaceRecognizer_create()
         recognizer.read('./trainer/trainer.pkl')           # 학습된 모델을 불러옴
-        cascadePath = 'haarcascade_frontalface_default.xml'
         faceCascade = cv2.CascadeClassifier(
             r"C:\Users\Yewon\anaconda3\envs\py38\Library\etc\haarcascades\haarcascade_frontalface_default.xml")
 
@@ -51,11 +48,6 @@ def make_prediction():
 
 
         while True:
-
-            # DB내에서 넘어온 사용자 리스트에 있는지 확인할때까지만 loop 돌리도록 코드 수정 필요
-            # 이후 조건문
-
-            # start -= 1
             ret, img = cam.read()
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -71,16 +63,15 @@ def make_prediction():
                 cv2.rectangle(img, (x, y), (x + w, y + h), (255, 153, 103), 2)  #bgr
                 id, confidence = recognizer.predict(gray[y:y + h, x:x + w])
 
-                if confidence < 60:
+                if confidence < 80:    # 숫자가 작을 수록 명확
                     put_name = id
-                    # name을 거치지 않고 id를 출력하게 함. 이후 출력된 id는 db로 보내야함
                 else:
-                    put_name = "확인되지 않은 방문자"
+                    put_name = "None"
 
 
                 confidence = "  {0}%".format(round(100 - confidence))
 
-                # cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
+                cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
                 cv2.putText(img, "Confidence"+str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 255), 1)
 
                 tmp.append(id)

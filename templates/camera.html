@@ -13,9 +13,6 @@
 
         <div id = 'container'>
             <p class='text'>카메라를 키면 방문자 확인을 시작합니다</p>
-            <!--<div class='video'>
-                <video id="myVideo" style="border: 1px solid #ddd;"></video>
-            </div>-->
             <div id='buttons'>
                 <form id="upload" action="/predict" method="POST" enctype="multipart/form-data" style='text-align:center; border-top-right-radius: 5px; width: 10%'>
                     <div class='btndiv'>
@@ -27,6 +24,14 @@
                         <button class="btn">Update</button>
                     </div>
                 </form>
+                
+            </div>
+            <div class='filebox'>
+                <input type="file" value="Upload" name="image" id='file'>
+                <label for='file'>방문자 사진 등록</label>
+                <div class='code'>
+                    
+                </div>
             </div>
             {% if d0 %}
                 <span id='update_done'>

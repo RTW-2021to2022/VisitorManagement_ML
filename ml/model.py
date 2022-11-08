@@ -42,7 +42,6 @@ def face_recognition():
 
     #video caputure setting
     capture = cv2.VideoCapture(0)   # initialize, # is camera number
-    # capture = cv2.imread("./김예원_흰배경.jpg")
     capture.set(cv2.CAP_PROP_FRAME_WIDTH,1280) #CAP_PROP_FRAME_WIDTH == 3
     capture.set(cv2.CAP_PROP_FRAME_HEIGHT,720) #CAP_PROP_FRAME_HEIGHT == 4
     # 정상작동시 true
