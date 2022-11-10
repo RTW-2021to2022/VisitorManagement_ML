@@ -86,16 +86,6 @@
   text-align: center;
 }
 
-/* .filebox .upload-name {
-  display: inline-block;
-  height: 40px;
-  padding: 0 0px;
-  vertical-align: middle;
-  border: 1px solid #dddddd;
-  width: 78%;
-  color: #999999;
-} */
-
 .filebox label {
   display: inline-block;
   margin-top: 5px;
