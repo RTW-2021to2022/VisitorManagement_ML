@@ -1,6 +1,8 @@
 ######### 가상환경 - py38 #########
+from datetime import time
 
 import cv2
+import joblib
 import numpy as np #배열 계산 용이
 from PIL import Image #python imaging library
 import os
@@ -69,39 +71,31 @@ def face_recognition():
         cv2.imshow('image', gray)
 
         #종료조건
-        if cv2.waitKey(1) > 0 : break #키 입력이 있을 때 반복문 종료
-        elif count >= 100 : break #100 face sample
-
-
+        if cv2.waitKey(1) > 0 : break
+        elif count >= 100 : break       # 데이터셋 만드는 수 지정
 
     print("\n [INFO] Exiting Program and cleanup stuff")
 
-    cv2.destroyAllWindows()#모든 윈도우 창 닫기
+    cv2.destroyAllWindows()# 모든 윈도우 창 닫기
 
 
+### 위에 만든 함수들을 실행
+face_recognition()                          # 사진에서 얼굴을 인식함
 
-########################## 데이터셋 바탕으로 학습 #################################
-
-face_recognition()
-
-path = '.././dataset2' #경로 (dataset 폴더)
+path = '.././dataset2'                      #경로 (dataset 폴더)
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 detector = cv2.CascadeClassifier(r"C:\Users\Yewon\anaconda3\envs\py38\Library\etc\haarcascades\haarcascade_frontalface_default.xml")
 
 
 print('\n [INFO] Training faces. It will take a few seconds. Wait ...')
-faces, ids = getImagesAndLabels(path)
-recognizer.train(faces, np.array(ids)) #학습
+faces, ids = getImagesAndLabels(path)       # 데이터셋에서 뽑아냄
+recognizer.train(faces, np.array(ids))      # 학습
 
-recognizer.write('.././trainer/trainer.pkl')  #!!
+                                            # 모델 저장
+recognizer.write('.././trainer/trainer.pkl')
 print('\n [INFO] {0} faces trained. Exiting Program'.format(len(np.unique(ids))))
 
-
 cv2.destroyAllWindows()
-
-
-########################## 모델 저장 #################################
-# # 피클 사용 - https://guru.tistory.com/40
 
 visit_list = list(set(visit_list))
 
