@@ -29,38 +29,44 @@ def retrain():
         faceCascade = cv2.CascadeClassifier(
             r"C:\Users\Yewon\anaconda3\envs\py38\Library\etc\haarcascades\haarcascade_frontalface_default.xml")
 
-        file.save("./"+ secure_filename(f.filename))
-        image = cv2.imread(file)  ## file 자체가 아닌 경로를 읽어오기 때문에 오류 발생
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        file.save("./face_photos/" + file.filename)    # 업로드 시 원하는 폴더에 저장
+        photo_num = len(os.listdir('./face_photos'))
 
-        face_id = input('\n enter user id end press <return> ==> ')
+        for i in os.listdir('./face_photos'):
+            path = './face_photos/'+i
+            print(path, '[INFO] 학습을 시작합니다.')
+            image = cv2.imread(path)
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-        # console message  - int형으로 입력받음
-        names = []
+            face_id = int(i[:-4])
+            print('[INFO] 저장하는 방문자 번호:', face_id)
 
-        count = 0
-        # 영상 처리 및 출력
-        while True:
-            faces = faceCascade.detectMultiScale(  # 얼굴 위치 검출
-                gray,  # 검출하고자 하는 원본이미지
-                scaleFactor=1.2,  # 검색 윈도우 확대 비율, 1보다 커야 한다
-                minNeighbors=6,  # 얼굴 사이 최소 간격(픽셀)
-                minSize=(20, 20)  # 얼굴 최소 크기. 이것보다 작으면 무시
-            )
+            # console message  - int형으로 입력받음
+            names = []
 
-            # 얼굴에 대해 rectangle 출력
-            for (x, y, w, h) in faces:
-                cv2.rectangle(gray, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                count += 1
-                cv2.imwrite("./dataset2/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
+            count = 0
+            # 영상 처리 및 출력
+            while True:
+                faces = faceCascade.detectMultiScale(  # 얼굴 위치 검출
+                    gray,  # 검출하고자 하는 원본이미지
+                    scaleFactor=1.2,  # 검색 윈도우 확대 비율, 1보다 커야 한다
+                    minNeighbors=6,  # 얼굴 사이 최소 간격(픽셀)
+                    minSize=(20, 20)  # 얼굴 최소 크기. 이것보다 작으면 무시
+                )
 
-            # cv2.imshow('image', gray)
+                # 얼굴에 대해 rectangle 출력
+                for (x, y, w, h) in faces:
+                    cv2.rectangle(gray, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                    count += 1
+                    cv2.imwrite("./dataset2/User." + str(face_id) + '.' + str(count) + ".jpg", gray[y:y + h, x:x + w])
 
-            # 종료조건
-            if cv2.waitKey(1) > 0:
-                break
-            elif count >= 100:
-                break  # 데이터셋 만드는 수 지정
+                # cv2.imshow('image', gray)
+
+                # 종료조건
+                if cv2.waitKey(1) > 0:
+                    break
+                elif count >= 100:
+                    break  # 데이터셋 만드는 수 지정
 
         print("\n [INFO] Exiting Program and cleanup stuff")
 
@@ -72,7 +78,7 @@ def retrain():
         detector = cv2.CascadeClassifier(
             r"C:\Users\Yewon\anaconda3\envs\py38\Library\etc\haarcascades\haarcascade_frontalface_default.xml")
 
-        print('\n [INFO] Training faces. It will take a few seconds. Wait ...')
+        print('\n [INFO] 데이터셋을 바탕으로 얼굴을 학습하고 있습니다. 잠시만 기다려주세요.')
 
         def getImagesAndLabels(path):
             detector = cv2.CascadeClassifier(
