@@ -30,7 +30,12 @@
                             <label for='file'>방문자 사진 불러오기</label>
                             <input type="file" multiple value="Upload" name="image" id='file'>
                         </div>
-                        
+<!--                        여기에 변수 입력-->
+                         {% if d0 %}
+                        <span id='update_done'>
+                            {{d0}}
+                        </span>
+                        {% endif %}
                     </div>
 
 
@@ -44,5 +49,6 @@
                 </form>
             </div>
         </div>
+    <p style="margin-left:66.5%">*업데이트는 방문자 사진 업로드 후 진행해주세요</p>
     </body>
 </html>
