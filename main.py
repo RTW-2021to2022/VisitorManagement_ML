@@ -116,7 +116,7 @@ def retrain():
 
         cv2.destroyAllWindows()
 
-        return flask.render_template('camera.html', d0="업데이트를 완료했습니다!")
+        return flask.render_template('camera.html', d0="업데이트 완료!")
 
 
 
